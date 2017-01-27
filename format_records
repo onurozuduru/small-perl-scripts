@@ -1,0 +1,23 @@
+#!/usr/bin/perl
+use warnings;
+use strict;
+
+my $file = "reg_data.csv";
+my ($name,$email,$phoneNum);
+while(1) {
+print "Name: ";
+$name = <STDIN>;
+chomp($name);
+if($name eq "exit") {
+	last;
+}
+print "E-mail: ";
+$email = <STDIN>;
+chomp($email);
+print "GSM: ";
+$phoneNum = <STDIN>;
+chomp($phoneNum);
+
+open FILE, ">>$file" or die("can't open $file\n");
+print FILE "$name,$email,$phoneNum\n";
+}

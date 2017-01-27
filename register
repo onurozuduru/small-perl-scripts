@@ -1,0 +1,24 @@
+#!/usr/bin/perl
+use warnings;
+use strict;
+
+my $file = "infos.txt";
+my ($no,$name,$mt1,$mt2,$final);
+print "Number: ";
+$no = <STDIN>;
+chomp($no);
+print "Full Name: ";
+$name = <STDIN>;
+chomp($name);
+print "MT1: ";
+$mt1 = <STDIN>;
+chomp($mt1);
+print "MT2: ";
+$mt2 = <STDIN>;
+chomp($mt2);
+print "FINAL: ";
+$final = <STDIN>;
+chomp($final);
+
+open FILE, ">>$file" or die("can't open $file\n");
+print FILE "$no,$name,$mt1,$mt2,$final\n";

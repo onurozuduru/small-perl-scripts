@@ -1,0 +1,37 @@
+#!/usr/bin/perl
+use strict;
+use warnings;
+
+my $file = "infos.txt";
+open FILE, $file or die("can't open $file!\n");
+my %grates =();
+
+while(my $line = <FILE>) {
+	my ($no,$name,$mt1,$mt2,$final) = split ",", $line;
+
+	$grates{$no} = {
+		name => $name,
+		mt1 => $mt1,
+		mt2 => $mt2,
+		final => $final
+	};
+
+	open LETTER, ">$no.txt" or die("can't open $no.txt!\n");
+
+	if($mt1 =~ "NA" && $mt2 =~ "NA" && $final =~ "NA") {
+		print LETTER
+<<END
+\tDear $grates{$no}{name},
+You didn't attend your exams. BAD BOY!!!
+END
+	}
+	else {
+		print LETTER
+<<END
+\tDear $grates{$no}{name},\nYour grates are as follows:\n
+MT1: $grates{$no}{mt1}
+MT2: $grates{$no}{mt2}
+FINAL: $grates{$no}{final}
+END
+	}
+}
